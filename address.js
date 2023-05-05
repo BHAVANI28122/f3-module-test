@@ -61,7 +61,7 @@ fetchpostal();
 
 
 let postal = JSON.parse(localStorage.getItem("postal"));
-console.log(postal[0].Message);
+console.log(postal);
 let arr = postal[0].PostOffice;
 
 function showData(){
