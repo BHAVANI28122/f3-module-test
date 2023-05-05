@@ -45,13 +45,12 @@ async function fetchpostal(){
 
 }
 
-async function getAllData(){
-  await getIp();
-  await getIpData();
-  await fetchpostal();
-}
+
+   getIp();
+   getIpData();
+   fetchpostal();
+
  
- await getAllData();
 
  var IP = localStorage.getItem("IP");
  console.log(IP);
