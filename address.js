@@ -46,9 +46,9 @@ async function fetchpostal(){
 }
 
 
-   getIp();
-   getIpData();
-   fetchpostal();
+  getIp();
+  getIpData();
+  fetchpostal();
 
  
 
