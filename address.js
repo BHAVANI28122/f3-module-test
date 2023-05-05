@@ -18,6 +18,8 @@
 
  }
 
+ getIp();
+
  async function getIpData(){
   
   try {
@@ -32,6 +34,8 @@
   }
 }
 
+getIpData();
+
 async function fetchpostal(){
 
   try{
@@ -45,12 +49,7 @@ async function fetchpostal(){
 
 }
 
-
-  getIp();
-  getIpData();
-  fetchpostal();
-
- 
+fetchpostal();
 
  var IP = localStorage.getItem("IP");
  console.log(IP);
