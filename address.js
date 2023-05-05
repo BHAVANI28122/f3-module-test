@@ -51,7 +51,7 @@ async function getAllData(){
   await fetchpostal();
 }
  
-getAllData();
+ await getAllData();
 
  var IP = localStorage.getItem("IP");
  console.log(IP);
