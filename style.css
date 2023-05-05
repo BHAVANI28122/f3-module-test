@@ -1,0 +1,19 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Open+Sans:wght@600&family=Poppins:wght@300;400&family=Quattrocento+Sans:wght@700&family=Roboto+Slab&family=Roboto:ital@0;1&family=Ruda&display=swap');
+body{
+    font-family: "Roboto";
+}
+p{
+    font-size: 40px;
+    font-weight: bold;
+}
+.main{
+    margin: 20px;
+}
+.btn{
+    background-color: black;
+    color: #fff;
+    padding: 0.5rem 5rem;
+    font-size: 30px;
+    border-radius: 10px;
+}

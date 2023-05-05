@@ -1,0 +1,70 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Open+Sans:wght@600&family=Poppins:wght@300;400&family=Quattrocento+Sans:wght@700&family=Roboto+Slab&family=Roboto:ital@0;1&family=Ruda&display=swap');
+body{
+    margin: 30px;
+    font-family: "Roboto";
+}
+.latitue-info{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 20px;
+    
+}
+h1{
+ 
+ margin: 20px 0px;
+}
+.latitue-info div{
+    border: 1px solid black;
+    padding: 10px 5px;
+    border-radius: 6px;
+}
+p,.message{
+    font-size: 24px;
+    font-weight: bold;
+    margin:20px 0px
+ 
+}
+.latitue-info div p{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px;
+}
+input{
+    width: 97%;
+    font-size: 24px;
+    padding: 10px 8px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+.post-office-info{
+    width: 97%;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: space-between;
+}
+.postdetails{
+    width: 97%;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: space-between;
+}
+
+.post-office-info .item{
+
+    border:  1px solid black;
+     margin: 40px 0px;
+     padding: 20px;
+     border-radius: 8px;
+ }
+ .postdetails .item{
+
+   border:  1px solid black;
+    margin: 40px 0px;
+    padding: 20px;
+    border-radius: 8px;
+}
+.map{
+    margin: 20px 0px;
+}
