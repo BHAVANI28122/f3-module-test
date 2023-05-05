@@ -20,23 +20,32 @@
 
  getIp();
 
+ var IP = localStorage.getItem("IP");
+ console.log(IP);
+
+
+    
  async function getIpData(){
   
-  try {
-    const response = await fetch(
-      `https://ipinfo.io/${IP}/geo`
-    );
-  let  data = await response.json();
-    localStorage.setItem("IPinfo",JSON.stringify(data));
-  
-  } catch (e) {
-    console.log("Error--", e);
-  }
-}
+    try {
+      const response = await fetch(
+        `https://ipinfo.io/${IP}/geo`
+      );
+    let  data = await response.json();
+      localStorage.setItem("IPinfo",JSON.stringify(data));
+    
+    } catch (e) {
+      console.log("Error--", e);
+    }
+ }
 
-getIpData();
+  getIpData();   
+  console.log(JSON.parse(localStorage.getItem("IPinfo")));
 
-async function fetchpostal(){
+  let details = JSON.parse(localStorage.getItem("IPinfo"));
+  console.log(details);
+     
+ async function fetchpostal(){
 
   try{
  const response = await fetch(`https://api.postalpincode.in/pincode/${details.postal}`);
@@ -48,19 +57,7 @@ async function fetchpostal(){
   }
 
 }
-
 fetchpostal();
-
- var IP = localStorage.getItem("IP");
- console.log(IP);
-
-  console.log(JSON.parse(localStorage.getItem("IPinfo")));
-
-  let details = JSON.parse(localStorage.getItem("IPinfo"));
-  console.log(details);
-     
-
-
 
 
 let postal = JSON.parse(localStorage.getItem("postal"));
