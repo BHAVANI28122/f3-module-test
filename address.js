@@ -57,6 +57,7 @@
   }
 
 }
+fetchpostal();
 
 
 let postal = JSON.parse(localStorage.getItem("postal"));
