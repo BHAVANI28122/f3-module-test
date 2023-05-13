@@ -1,70 +1,139 @@
 
 
- async function getIp(){
+//  async function getIp(){
  
 
- try {
-  const response = await fetch(
-    "https://api.ipify.org?format=json"
-  );
- let IP_address = await response.json();
-  localStorage.setItem("IP",IP_address.ip);
+//  try {
+//   const response = await fetch(
+//     "https://api.ipify.org?format=json"
+//   );
+//  let IP_address = await response.json();
+//   localStorage.setItem("IP",IP_address.ip);
 
-  }
+//   }
 
- catch (e) {
-  console.log("Error--", e);
- }
+//  catch (e) {
+//   console.log("Error--", e);
+//  }
 
- }
+//  }
 
- getIp();
+let ip;
+let IpData;
+let postalInfo;
 
- var IP = localStorage.getItem("IP");
- console.log(IP);
+ function getIp(){
 
-
-    
- async function getIpData(){
-  
-    try {
-      const response = await fetch(
-        `https://ipinfo.io/${IP}/geo`
-      );
-    let  data = await response.json();
-      localStorage.setItem("IPinfo",JSON.stringify(data));
-    
-    } catch (e) {
-      console.log("Error--", e);
-    }
- }
-
-  getIpData();   
-  console.log(JSON.parse(localStorage.getItem("IPinfo")));
-
-  let details = JSON.parse(localStorage.getItem("IPinfo"));
-  console.log(details);
-     
- async function fetchpostal(){
-
-  try{
- const response = await fetch(`https://api.postalpincode.in/pincode/${details.postal}`);
-  let data = await response.json();
-    localStorage.setItem("postal",JSON.stringify(data));
-  }
-  catch (e) {
-    console.log("Error--", e);
-  }
-
+  return new Promise((resolve,reject)=>{
+    fetch("https://api.ipify.org?format=json").
+    then((res)=>(res.json())).
+    then((data)=>resolve(data)).catch((err)=>console.log(err))
+  })
 }
-fetchpostal();
+
+function getIpData(IP){
+
+  return new Promise((resolve,reject)=>{
+    console.log(IP);
+    fetch(`https://ipinfo.io/${IP}/geo`).
+    then((res)=>(res.json())).
+    then((data)=>resolve(data)).catch((err)=>console.log(err))
+  })
+}
+
+function fetchPostal(details){
+
+  return new Promise((resolve,reject)=>{
+    console.log(details.postal);
+    fetch(`https://api.postalpincode.in/pincode/${details.postal}`).
+    then((res)=>(res.json())).
+    then((data)=>resolve(data)).catch((err)=>console.log(err))
+  })
+}
 
 
-let postal = JSON.parse(localStorage.getItem("postal"));
-console.log(postal);
-let arr = postal[0].PostOffice;
+
+
+
+getIp().then((data)=>{
+  ip = data.ip;
+  sessionStorage.setItem("IP",ip);
+}).catch((e)=>{
+  console.log(e);
+})
+
+getIpData(ip).then((data)=>{
+  IpData = data;
+  sessionStorage.setItem("IpInfo",JSON.stringify(IpData));
+}).catch((e)=>{
+  console.log(e);
+})
+
+fetchPostal(IpData.postal).then((data)=>{
+  postalInfo = data;
+  sessionStorage.setItem("postalInfo",JSON.stringify(postalInfo));
+
+  let details = JSON.parse(localStorage.getItem("IpInfo"));
+  console.log(details);
+
+     
+  showData();
+}).catch((e)=>{
+  console.log(e);
+})
+
+
+
+
+
+
+
+    
+//  async function getIpData(IP){
+  
+//     try {
+//       const response = await fetch(
+//         `https://ipinfo.io/${IP}/geo`
+//       );
+//     let  data = await response.json();
+//       localStorage.setItem("IPinfo",JSON.stringify(data));
+    
+//     } catch (e) {
+//       console.log("Error--", e);
+//     }
+//  }
+
+//   getIpData();   
+//   console.log(JSON.parse(localStorage.getItem("IPinfo")));
+
+  // let details = JSON.parse(localStorage.getItem("IpInfo"));
+  // console.log(details);
+     
+//  async function fetchpostal(){
+
+//   try{
+//  const response = await fetch(`https://api.postalpincode.in/pincode/${details.postal}`);
+//   let data = await response.json();
+//     localStorage.setItem("postal",JSON.stringify(data));
+//   }
+//   catch (e) {
+//     console.log("Error--", e);
+//   }
+
+// }
+// fetchpostal();
+
+
+// let postal = JSON.parse(localStorage.getItem("postalInfo"));
+// console.log(postal);
+// let arr = postal[0].PostOffice;
 
 function showData(){
+
+  
+let postal = JSON.parse(localStorage.getItem("postalInfo"));
+console.log(postal);
+let arr = postal[0].PostOffice;
 
 let longitude_latitude =details.loc.split(",");
 let latitude = longitude_latitude[0];
@@ -107,7 +176,7 @@ console.log(arr);
 postalData(arr);
 
 }
-showData();
+
 
 
 
