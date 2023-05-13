@@ -31,20 +31,20 @@ let postalInfo;
   })
 }
 
-function getIpData(IP){
+function getIpData(){
 
   return new Promise((resolve,reject)=>{
-    console.log(IP);
+   let IP = sessionStorage.getItem("IP");
     fetch(`https://ipinfo.io/${IP}/geo`).
     then((res)=>(res.json())).
     then((data)=>resolve(data)).catch((err)=>console.log(err))
   })
 }
 
-function fetchPostal(details){
+function fetchPostal(){
 
   return new Promise((resolve,reject)=>{
-    console.log(details.postal);
+    let details = JSON.parse(sessionStorage.getItem("IpInfo"));
     fetch(`https://api.postalpincode.in/pincode/${details.postal}`).
     then((res)=>(res.json())).
     then((data)=>resolve(data)).catch((err)=>console.log(err))
@@ -56,25 +56,22 @@ function fetchPostal(details){
 
 
 getIp().then((data)=>{
-  ip = data.ip;
+  let ip = data.ip;
   sessionStorage.setItem("IP",ip);
 }).catch((e)=>{
   console.log(e);
 })
 
-getIpData(ip).then((data)=>{
-  IpData = data;
-  sessionStorage.setItem("IpInfo",JSON.stringify(IpData));
+getIpData().then((data)=>{
+ let  IpData = JSON.stringify(data);
+  sessionStorage.setItem("IpInfo",IpData);
 }).catch((e)=>{
   console.log(e);
 })
 
-fetchPostal(IpData.postal).then((data)=>{
-  postalInfo = data;
+fetchPostal().then((data)=>{
+  let postalInfo = JSON.stringify(data) ;
   sessionStorage.setItem("postalInfo",JSON.stringify(postalInfo));
-
-  let details = JSON.parse(localStorage.getItem("IpInfo"));
-  console.log(details);
 
      
   showData();
@@ -130,6 +127,9 @@ fetchPostal(IpData.postal).then((data)=>{
 
 function showData(){
 
+
+  let details = JSON.parse(localStorage.getItem("IpInfo"));
+  console.log(details);
   
 let postal = JSON.parse(localStorage.getItem("postalInfo"));
 console.log(postal);
