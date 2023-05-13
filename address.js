@@ -35,6 +35,7 @@ function getIpData(){
 
   return new Promise((resolve,reject)=>{
    let IP = sessionStorage.getItem("IP");
+   console.log(IP);
     fetch(`https://ipinfo.io/${IP}/geo`).
     then((res)=>(res.json())).
     then((data)=>resolve(data)).catch((err)=>console.log(err))
@@ -128,10 +129,10 @@ fetchPostal().then((data)=>{
 function showData(){
 
 
-  let details = JSON.parse(localStorage.getItem("IpInfo"));
+  let details = JSON.parse(sessionStorage.getItem("IpInfo"));
   console.log(details);
   
-let postal = JSON.parse(localStorage.getItem("postalInfo"));
+let postal = JSON.parse(sessionStorage.getItem("postalInfo"));
 console.log(postal);
 let arr = postal[0].PostOffice;
 
